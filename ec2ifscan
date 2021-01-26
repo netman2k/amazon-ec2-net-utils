@@ -12,7 +12,7 @@ if [ $UID -ne 0 ]; then
 fi
 
 logger --tag ec2net "[ec2ifscan] Scanning for unconfigured interfaces"
-for dev in $(find /sys/class/net/eth*) ; do
+for dev in $(find /sys/class/net/{eth,ens}*) ; do
   cfg="/etc/sysconfig/network-scripts/ifcfg-${dev##*/}"
   state=$(cat ${dev}/operstate)
   if [ ! -e "${cfg}" ] && [ "${state}" == "down" ] ; then

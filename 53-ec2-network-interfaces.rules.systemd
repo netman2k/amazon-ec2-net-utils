@@ -6,3 +6,6 @@
 
 ACTION=="add", SUBSYSTEM=="net", KERNEL=="eth*", TAG+="systemd", ENV{SYSTEMD_WANTS}+="ec2net-ifup@$env{INTERFACE}"
 ACTION=="remove", SUBSYSTEM=="net", KERNEL=="eth*", RUN+="/usr/sbin/ec2ifdown $env{INTERFACE}"
+
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="ens*", TAG+="systemd", ENV{SYSTEMD_WANTS}+="ec2net-ifup@$env{INTERFACE}"
+ACTION=="remove", SUBSYSTEM=="net", KERNEL=="ens*", RUN+="/usr/sbin/ec2ifdown $env{INTERFACE}"
